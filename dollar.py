@@ -1,19 +1,20 @@
 from data import Data
 from gcv import DOLLAR_SCRAP_URL
 
+
 class Dollar(Data):
 
-    def __init__(self, target_page = DOLLAR_SCRAP_URL):
+    def __init__(self, target_page=DOLLAR_SCRAP_URL):
         super().__init__(target_page)
 
-    def _extract_data(self, data):
+    def _extract_data(self, soup):
         """Override from Class Data. It recibes a BeatifoulSoup object. Find all necessary values by id. Then
         return all exctracted values in a tuple."""
 
-        official_dollar_purchase_price = data.find(id='c1').text
-        official_dollar_sales_price = data.find(id='v1').text
-        blue_dollar_purchase_price = data.find(id='c2').text
-        blue_dollar_sales_price = data.find(id='v2').text
+        official_dollar_purchase_price = soup.find(id='c1').text
+        official_dollar_sales_price = soup.find(id='v1').text
+        blue_dollar_purchase_price = soup.find(id='c2').text
+        blue_dollar_sales_price = soup.find(id='v2').text
 
         return (official_dollar_purchase_price, official_dollar_sales_price,
                 blue_dollar_purchase_price, blue_dollar_sales_price)
