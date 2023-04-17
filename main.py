@@ -2,30 +2,18 @@ from dollar import Dollar
 from inflation import Inflation
 from interest import Interest
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
-data = {}
-dollar = Dollar()
-inflation = Inflation()
-interest = Interest()
 
-data.update(dollar.data)
-data.update(inflation.data)
-data.update(interest.data)
-
-print(data)
-
-"""
-@app.get('/')
+@app.get('/data', response_model=dict)
 def run():
-    
-    data = {}
+
     dollar = Dollar()
     inflation = Inflation()
+    interest = Interest()
 
-    data.update(dollar.data)
-    data.update(inflation.data)
+    data = {**dollar.data, **inflation.data, **interest.data}
 
-    return data
-"""
+    return JSONResponse(content=data)
