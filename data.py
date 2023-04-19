@@ -9,18 +9,17 @@ class Data(ABC):
     Then, data is cleaned and transformed. 
     If the request fails, a ValueError exception is raised with an error."""
 
-    def __init__(self, target_page):
+    def __init__(self, target_page: str):
 
         try:
             response = requests.get(target_page)
             if response.status_code == 200:
-                soup = BeautifulSoup(response.text, 'html.parser')
-                data = self._final_data(soup)
-                self.data = data
+                soup: object = BeautifulSoup(response.text, 'html.parser')
+                self.data: dict = self._final_data(soup)
             else:
                 raise ValueError(f'Error: {response.status_code}')
         except ValueError as ve:
-            self.data = {'error_message': ve}
+            self.data: dict = {'error_message': ve}
 
     @abstractmethod
     def _extract_data(self):
@@ -34,7 +33,7 @@ class Data(ABC):
     def _transform_data(self):
         pass
 
-    def _final_data(self, soup):
+    def _final_data(self, soup: object) -> dict:
         """Executes all functions and returns the final processed data"""
 
         data = self._extract_data(soup)
