@@ -1,8 +1,8 @@
-from data import Data
+from scrapping.data_models.static_data import StaticData
 from gcv import INFLATION_SCRAP_URL
 
 
-class Inflation(Data):
+class Inflation(StaticData):
 
     def __init__(self, target_page=INFLATION_SCRAP_URL):
         super().__init__(target_page)

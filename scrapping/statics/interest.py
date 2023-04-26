@@ -1,8 +1,8 @@
-from data import Data
+from scrapping.data_models.static_data import StaticData
 from gcv import INTEREST_RATE_SCRAP_URL
 
 
-class Interest(Data):
+class Interest(StaticData):
 
     def __init__(self, target_page=INTEREST_RATE_SCRAP_URL):
         super().__init__(target_page)
