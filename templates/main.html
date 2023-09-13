@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Argentina Woth It</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="static/css/styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="contenedor-header">
+            <h1>Argentina Worth It</h1>
+        </div>
+    </header>
+    <div class="contenedor">
+        <div class="titulo">
+            <h2>Datos de Argentina</h2>
+        </div>
+        <div class="datos">
+            <div class="dato">
+                <h3>Dólar Oficial</h3>
+                <p>{{data['official_dollar']}}</p> 
+            </div>
+            <div class="dato">
+                <h3>Dólar Blue</h3>
+                <p>{{data['blue_dollar']}}</p>
+            </div>
+            <div class="subdato descripcion">
+                <h3>Brecha entre dólares: {{data['difference_dollar']}}</h3>
+                <p>El valor de cada dólar es el promedio compra-venta (valor en pesos).</p>
+            </div>
+            <div class="dato subdato">
+                <h3>Inflación</h3>
+                <div class="subdato">
+                    <p>Inflación Anual</p>
+                    <p>{{data['annual_inflation']}}%</p>
+                </div>
+                <div class="subdato">
+                    <p>Inflación Mensual</p>
+                    <p>{{data['current_inflation']}}%</p>
+                </div>
+                <div class="subdato">
+                    <p>Inflación Acumulada</p>
+                    <p>{{data['accumulated_inflation']}}%</p>
+                </div>
+            </div>
+            <div class="dato subdato">
+                <h3>Tasa de interés</h3>
+                <div class="subdato">
+                    <p>Promedio tasa de interés</p>
+                    <p>{{data['average_interest_rate']}}%</p>
+                </div>
+                <div class="subdato">
+                    <p>Tasa de interés más baja</p>
+                    <p>{{data['min_interest_rate']}}%</p>
+                </div>
+                <div class="subdato">
+                    <p>Tasa de interés más alta</p>
+                    <p>{{data['max_interest_rate']}}%</p>
+                </div>
+            </div>
+            <div class="dato subdato">
+                
+                <h3>Variantes de la bolsa de valores S&P Merval</h3>
+                <div class="subdato">
+                    <p>Promedio de variación</p>
+                    <p>{{data['average_stockmarket_variation']}}%</p>
+                </div>
+                <div class="subdato">
+                    <p>Más alto</p>
+                    <p>{{data['max_stockmarket_rise'][0]}}</p>
+                    <p>{{data['max_stockmarket_rise'][1]}}%</p>
+                </div>
+                <div class="subdato">
+                    <p>Más bajo</p>
+                    <p>{{data['min_stockmarket_rise'][0]}}</p>
+                    <p>{{data['min_stockmarket_rise'][1]}}%</p>
+                </div>
+            </div>
+
+            <div class="dato subdato">
+                <h3>Criptomonedas</h3>
+                <p>El valor de cada criptomoneda es el promedio compra-venta (valor en pesos).</p>
+                <div class="subdato">
+                    <p>Bitcoin</p>
+                    <p>Precio: {{data['bitcoin_price']}}</p>
+                    <p>Variación: {{data['bitcoin_variation_percentage']}}%</p>
+                </div>
+                <div class="subdato">
+                    <p>Ethereum</p>
+                    <p>Precio: {{data['ethereum_price']}}</p>
+                    <p>Variación: {{data['ethereum_variation_percentage']}}%</p>
+                </div>
+                <div class="subdato">
+                    <p>Dai</p>
+                    <p>Precio: {{data['dai_price']}}</p>
+                    <p>Variación: {{data['dai_variation_percentage']}}%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    
+        .modal {
+          display: none;
+          position: fixed;
+          z-index: 1;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgba(0, 0, 0, 0.4);
+        }
+    
+        .modal-content {
+          background-color: #fefefe;
+          margin: 20% auto;
+          padding: 20px;
+          border: 1px solid #888;
+          border-radius: 10px;
+          max-width: 400px;
+        }
+    
+        .modal-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+    
+        .modal-title {
+          font-size: 24px;
+          color: blue;
+          margin: 0;
+        }
+    
+        .close-btn {
+          background-color: red;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          border-radius: 50%;
+          font-size: 16px;
+          cursor: pointer;
+        }
+    
+        .modal-body {
+          margin-top: 20px;
+        }
+    
+        .checkbox {
+          margin-bottom: 10px;
+        }
+    
+        .checkbox label {
+          display: flex;
+          align-items: center;
+        }
+    
+        .checkbox input[type="checkbox"] {
+          margin-right: 10px;
+        }
+    
+        .modal-footer {
+          margin-top: 20px;
+          display: flex;
+          justify-content: flex-end;
+        }
+    
+        .btn {
+          padding: 8px 16px;
+          background-color: #4CAF50;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+    
+        .btn:hover {
+          background-color: #45a049;
+        }
+      </style>
+    </head>
+
+
+    <div class="boton-generar">
+        <a onclick="openModal()" id="abrir-modal">Generar reporte</a>
+    </div>      
+    
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title">Selecciona los datos</h2>
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" id="dollar">
+                Dólar
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" id="inflation">
+                Inflación
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" id="interest">
+                Tasa de interés
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" id="stock_market">
+                Variantes de la bolsa
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" id="crypto">
+                Criptomonedas
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn" onclick="generateReport()">Enviar</button>
+          </div>
+        </div>
+      </div>
+    
+      <script src="../static/js/main.js"></script>
+    
+</body>
+
+</html>

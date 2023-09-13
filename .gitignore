@@ -1,0 +1,7 @@
+*.o
+*.out
+config.ini
+config/gcv.py
+__pycache__/
+/node_modules/
+*.tmp

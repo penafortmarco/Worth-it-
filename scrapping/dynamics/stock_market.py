@@ -1,12 +1,12 @@
 from scrapping.data_models.dynamic_data import DynamicData
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
-from gcv import STOCK_MARKET_SCRAP_URL
+from config.gcv import STOCK_MARKET_SCRAP_URL
 
 
 class StockMarket(DynamicData):
 
-    def __init__(self, target_page=STOCK_MARKET_SCRAP_URL):
+    def __init__(self, target_page: str = STOCK_MARKET_SCRAP_URL):
         super().__init__(target_page)
 
     def _extract_data(self, driver: object) -> tuple:

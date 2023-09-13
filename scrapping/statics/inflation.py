@@ -1,5 +1,5 @@
 from scrapping.data_models.static_data import StaticData
-from gcv import INFLATION_SCRAP_URL
+from config.gcv import INFLATION_SCRAP_URL
 
 
 class Inflation(StaticData):

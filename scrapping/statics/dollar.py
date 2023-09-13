@@ -1,5 +1,5 @@
 from scrapping.data_models.static_data import StaticData
-from gcv import DOLLAR_SCRAP_URL
+from config.gcv import DOLLAR_SCRAP_URL
 
 
 class Dollar(StaticData):
@@ -38,9 +38,9 @@ class Dollar(StaticData):
         """Override from Class Data. It recibes a tuple of floats. Calculates the average for dollars and the difference 
         between them. Finally a dictionary with all converted values."""
 
-        official_dollar: float = (data[0] + data[1])/2
-        blue_dollar: float = (data[2] + data[3])/2
-        difference_dollar: float = blue_dollar - official_dollar
+        official_dollar: float = round((data[0] + data[1])/2, 2)
+        blue_dollar: float = round((data[2] + data[3])/2, 2)
+        difference_dollar: float = round(blue_dollar - official_dollar, 2)
 
         data: dict = {
             'official_dollar': official_dollar,

@@ -1,5 +1,5 @@
 from scrapping.data_models.static_data import StaticData
-from gcv import INTEREST_RATE_SCRAP_URL
+from config.gcv import INTEREST_RATE_SCRAP_URL
 
 
 class Interest(StaticData):

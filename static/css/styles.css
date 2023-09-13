@@ -144,6 +144,7 @@ nav ul li a:hover {
 
 .boton-generar a:hover {
     background-color: #0ead43;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {

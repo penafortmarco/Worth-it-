@@ -26,4 +26,3 @@ class Data(ABC):
         data = self._clean_data(data)
         data = self._transform_data(data)
         return data
-    pass
